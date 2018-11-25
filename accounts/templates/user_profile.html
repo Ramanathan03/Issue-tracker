@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load bootstrap_tags %}
+{% block content %}
+    
+  
+  <div class="container">
+    <h1>Profile</h1>
+        <strong>Username:</strong>{{ user }}<br>
+        {{ user.email }} <br>
+        {{ user.date_joined}} <br>
+        {{user.first_name}} <br>
+        <a href="{% url 'editProfile' %}">Edit Profile</a>
+       
+        
+   
+    
+    </div>
+{% endblock %}

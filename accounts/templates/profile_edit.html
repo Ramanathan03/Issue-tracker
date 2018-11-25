@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load bootstrap_tags %}
+{% block content %}
+    
+  
+  <div class="container-fluid">
+    <h1>Register</h1>
+        <form method="POST">
+        {% csrf_token %}
+        
+        {{ form | as_bootstrap}}
+        <br>
+        <br>
+        <br>
+        <button type="submit" class="btn btn-info btn-small">Login</button>
+    </form>
+            
+       
+        
+   
+    
+    </div>
+{% endblock %}

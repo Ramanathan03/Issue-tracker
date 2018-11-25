@@ -1,0 +1,97 @@
+from django.shortcuts import render, redirect, reverse
+from accounts.forms import loginForm, userRegisterForm, editProfile,bio_and_image
+from django.contrib import auth, messages
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
+# Create your views here.
+
+def index(request):
+    return render(request,'index.html')
+
+def user_login(request):
+    #if request.user.is_authenticated:
+     #   return redirect(reverse('index'))
+    if request.method == "POST":
+       form = loginForm(request.POST)
+       
+       if form.is_valid():
+           user = auth.authenticate(username = request.POST['username'],
+                                    password = request.POST['password'] )
+           
+           
+           if user:
+               auth.login(user=user, request=request)
+               messages.success(request, 'you successfully logged in')
+               return redirect(reverse('index'))
+           else:
+               form.add_error(None,'your password or username is incorrect')
+    else:
+        form = loginForm()
+    return render(request,'login.html',{"form":form})
+    
+def user_register(request):
+    if request.method == "POST":
+        registration_form = userRegisterForm(request.POST)
+    
+        if registration_form.is_valid():
+           registration_form.save()
+           user = auth.authenticate(username = request.POST['username'],
+                                    password = request.POST['password1'] )
+           if user:
+            auth.login(user=user, request=request)
+            messages.success(request, 'you successfully logged in')
+            return redirect(reverse('index'))
+           else:
+            messages.error(request,'Unable to register at these time')
+    else:    
+       registration_form = userRegisterForm()
+    return render(request,'register.html',{"registration_form":registration_form})
+    
+@login_required
+def logout(request):
+    auth.logout(request)
+    messages.success(request,"You successfully logged out")
+    return redirect(reverse('index'))
+    
+def user_profile(request):
+    user = User.objects.get(email=request.user.email) 
+    return render(request,'user_profile.html', {'user':user})
+    
+def edit_user_profile(request):
+    if request.method == "POST":
+        form = editProfile(request.POST, instance=request.user) 
+        
+        if form.is_valid:
+            form.save()
+            return redirect(reverse('profile'))
+        else:
+            return redirect(reverse('editProfile'))
+    else:
+        form =editProfile(instance=request.user) 
+    return render(request,'profile_edit.html',{"form":form})
+
+def changePassword(request):
+    if request.method == "POST":
+        form = PasswordChangeForm(data=request.POST, user=request.user) 
+        
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, form.user)
+            return redirect(reverse('profile'))
+        else:
+            return redirect(reverse('editProfile'))
+    else:
+        form =PasswordChangeForm(user=request.user) 
+    return render(request,'change_password.html',{"form":form})
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
