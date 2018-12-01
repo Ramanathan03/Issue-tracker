@@ -39,12 +39,12 @@ class userRegisterForm(UserCreationForm):
 class editProfile(UserChangeForm):
     class Meta:
         model = User
-        fields = ['email','username','first_name','last_name','password']
+        fields = ['username','password','first_name','last_name','email']
 
-class bio_and_image(forms.Form):
+class bio_and_image(forms.ModelForm):
     class Meta:
         model = bio
-        fields = ['image']
+        fields = ['image','location']
     
     
         

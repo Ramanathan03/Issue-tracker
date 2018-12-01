@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load bootstrap_tags %}
+{% block content %}
+    
+  
+  <div class="container">
+      <div class="row">
+      
+      
+      <div class="col-md-12">
+      
+   </div> 
+   </div>
+   
+   {{ticket_comment.comment}}
+   
+   <div class="row">
+       <div class="col-md-6">
+           {{ticket.author}}
+       </div>
+       <div class="col-md-6">
+           
+   {{ticket.description}}
+    
+   </div>
+   </div>
+  
+  {% for comments in ticket.comments.all %}
+   {{comments.comment}}
+   {% endfor %}
+   
+        <form method="POST" >
+        {% csrf_token %}
+        {{commentbox}}
+        <button type="submit" class="btn btn-info btn-small">Comment</button>
+    </form>
+   
+    
+    </div>
+{% endblock %}

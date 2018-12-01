@@ -9,10 +9,16 @@
         {{ user.email }} <br>
         {{ user.date_joined}} <br>
         {{user.first_name}} <br>
+        
+        {% for info in location_image %}
+        <img src="{{MEDIA_URL}}{{info.image}}">
+                
+            </div>
+            {{info.location}}
+        {% endfor %}
         <a href="{% url 'editProfile' %}">Edit Profile</a>
        
-        
-   
+       
     
     </div>
 {% endblock %}

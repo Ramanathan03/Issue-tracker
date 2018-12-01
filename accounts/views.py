@@ -1,18 +1,24 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from accounts.forms import loginForm, userRegisterForm, editProfile,bio_and_image
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
+from tickets.models import add_tickets_form
+from .models import bio
+from django.utils import timezone
 # Create your views here.
-
+  
 def index(request):
-    return render(request,'index.html')
+    
+    tickets = add_tickets_form.objects.all()
+    print(tickets)
+    return render(request,'index.html', {'tickets':tickets})
 
 def user_login(request):
-    #if request.user.is_authenticated:
-     #   return redirect(reverse('index'))
+    if request.user.is_authenticated:
+        return redirect(reverse('index'))
     if request.method == "POST":
        form = loginForm(request.POST)
        
@@ -57,20 +63,24 @@ def logout(request):
     
 def user_profile(request):
     user = User.objects.get(email=request.user.email) 
-    return render(request,'user_profile.html', {'user':user})
+    location_image = bio.objects.all()
+    return render(request,'user_profile.html', {'user':user, 'location_image':location_image})
     
 def edit_user_profile(request):
+    
     if request.method == "POST":
-        form = editProfile(request.POST, instance=request.user) 
-        
-        if form.is_valid:
+        form = editProfile(request.POST, request.FILES, instance=request.user) 
+        forms = bio_and_image(request.POST, request.FILES, instance=request.user.profile)
+        if form and forms.is_valid:
+            forms.save()
             form.save()
             return redirect(reverse('profile'))
         else:
             return redirect(reverse('editProfile'))
     else:
-        form =editProfile(instance=request.user) 
-    return render(request,'profile_edit.html',{"form":form})
+        form =editProfile(instance=request.user)
+        forms = bio_and_image(instance=request.user)
+    return render(request,'profile_edit.html',{"form":form, "forms":forms})
 
 def changePassword(request):
     if request.method == "POST":
