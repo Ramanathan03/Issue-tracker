@@ -61,26 +61,34 @@ def logout(request):
     messages.success(request,"You successfully logged out")
     return redirect(reverse('index'))
     
-def user_profile(request):
-    user = User.objects.get(email=request.user.email) 
-    location_image = bio.objects.all()
-    return render(request,'user_profile.html', {'user':user, 'location_image':location_image})
+def profile(request, pk=None):
+    if pk:
+        user = User.objects.get(pk=pk)
+    else:
+        user = request.user
+    return render(request,'user_profile.html', {'user':user})
     
 def edit_user_profile(request):
-    
+    image_instance = bio.objects.get(user=request.user)
     if request.method == "POST":
         form = editProfile(request.POST, request.FILES, instance=request.user) 
-        forms = bio_and_image(request.POST, request.FILES, instance=request.user.profile)
-        if form and forms.is_valid:
-            forms.save()
+        bio_form = bio_and_image(request.POST, request.FILES, instance=image_instance)
+        if form.is_valid() and bio_form.is_valid():
             form.save()
+            data = bio_form.cleaned_data
+            profile_data = bio.objects.create(
+                user = request.user,
+                image = data['image'],
+                location = data['location'],
+                
+                )
             return redirect(reverse('profile'))
         else:
             return redirect(reverse('editProfile'))
     else:
         form =editProfile(instance=request.user)
-        forms = bio_and_image(instance=request.user)
-    return render(request,'profile_edit.html',{"form":form, "forms":forms})
+        bio_form = bio_and_image(instance=image_instance)
+    return render(request,'profile_edit.html',{"form":form, "bio_form":bio_form})
 
 def changePassword(request):
     if request.method == "POST":

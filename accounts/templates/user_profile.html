@@ -5,20 +5,21 @@
   
   <div class="container">
     <h1>Profile</h1>
-        <strong>Username:</strong>{{ user }}<br>
-        {{ user.email }} <br>
-        {{ user.date_joined}} <br>
-        {{user.first_name}} <br>
+    
+       <p>Username: {{ user }}</p>
+    <p>First name: {{ user.first_name }}</p>
+    <p>Last name: {{ user.last_name }}</p>
+    <p>Email: {{ user.email }}</p>
         
-        {% for info in location_image %}
-        <img src="{{MEDIA_URL}}{{info.image}}">
-                
-            </div>
-            {{info.location}}
-        {% endfor %}
+        
+        <img src="{{user.bio.image.url}}" width=246px>
+               {{user.bio.location}} 
+            
+            {{user.location}}
+         
         <a href="{% url 'editProfile' %}">Edit Profile</a>
        
-       
+      
     
     </div>
 {% endblock %}

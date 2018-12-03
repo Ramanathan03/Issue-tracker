@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Issue Tracker</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cerulean/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" />
     <link rel="stylesheet" href="{% static 'font-awesome/css/fontawesome.min.css' %}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -14,21 +15,27 @@
     {% block head_js %}
     {% endblock head_js %}
 </head>
-<body>
-    <div class="container-fluid">
+<body class="body-bg-color">
+    
         <header>
-            <ul>
-            {% if user.is_authenticated %}
-            
-            <li><a href="{% url 'logout' %}">Logout</a></li>
-            <li><a href="{% url 'profile' %}">Profile</a></li>
+            <nav class="nav-property">
+                <div class="nav-wrapper">
+                    <a class="logo-padding"href="{% url 'index' %}"><img src="http://static1.squarespace.com/static/5975f7cde58c628c613fe7b6/t/59762d21db29d6a05c69becd/1500917032802/PS+LOGO+no+background.png?format=1000w" width=70px></img></a>
+                
+                <ul id="nav-mobile" class="right hide-on-med-and-down padding1 nav-element-padding">
+                    {% if user.is_authenticated %}
+            <li><a class="nav-font" href="{% url 'add_tickets' %}">Add Issue</a></li>
+            <li><a class="nav-font" href="{% url 'logout' %}">Logout</a></li>
+            <li><a class="nav-font" href="{% url 'profile' %}">Profile</a></li>
             {% else %}
-             <li><a href="{% url 'login' %}">Login</a></li>
-             <li><a href="{% url 'register' %}">Reg</a></li>
+             <li><a class="nav-font" href="{% url 'login' %}">Login</a></li>
+             <li><a class="nav-font" href="{% url 'register' %}">Registration</a></li>
              {% endif %}
-            </ul>
+                </ul>
+                </div>
+            </nav>
         </header>
-    </div>
+    
         {% block content %} {% endblock %}
     
 </body>
