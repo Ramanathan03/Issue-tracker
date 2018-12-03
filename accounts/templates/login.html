@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 {% load bootstrap_tags %}
+{% load static from staticfiles %}
 {% block content %}
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="login-logo-padding h3-font-size">
-        <a href="{% url 'index' %}"><img src="http://static1.squarespace.com/static/5975f7cde58c628c613fe7b6/t/59762d21db29d6a05c69becd/1500917032802/PS+LOGO+no+background.png?format=1000w" width=70px></img></a>
+        <a href="{% url 'index' %}"><img src="{{MEDIA_URL}}img/ps.png" width=70px></img></a>
     </div>
     <h3 class="h3-font-size">Login to PS</h3>
     </div>

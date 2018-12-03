@@ -20,7 +20,7 @@
         <header>
             <nav class="nav-property">
                 <div class="nav-wrapper">
-                    <a class="logo-padding"href="{% url 'index' %}"><img src="http://static1.squarespace.com/static/5975f7cde58c628c613fe7b6/t/59762d21db29d6a05c69becd/1500917032802/PS+LOGO+no+background.png?format=1000w" width=70px></img></a>
+                    <a class="logo-padding"href="{% url 'index' %}"><img src="{{MEDIA_URL}}img/ps.png" width=70px></img></a>
                 
                 <ul id="nav-mobile" class="right hide-on-med-and-down padding1 nav-element-padding">
                     {% if user.is_authenticated %}
