@@ -3,9 +3,11 @@
 {% load static from staticfiles %}
 
 {% block content %}
-<form action="{% url 'search' %}" method="get">
-                <input type="search" name="q"/>
+<div class="row">
+<form action="{% url 'search' %}" method="get" class="col-md-6 margin-auto">
+                <input type="search" class="search-form" name="q" placeholder="Search issues" />
                 </form>
+                </div>
       {% for ticket in tickets %}
       <div class="row">
       <div class="col-md-12">

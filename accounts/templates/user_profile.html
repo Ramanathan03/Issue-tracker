@@ -5,22 +5,26 @@
   
   <div class="container">
     <h1>Profile</h1>
-    
-       <p>Username: {{ user }}</p>
-    <p>First name: {{ user.first_name }}</p>
-    <p>Last name: {{ user.last_name }}</p>
-    <p>Email: {{ user.email }}</p>
-        
-        
-        <img src="{{user.profile.image.url}}" width=246px>
+        <div class="row">
+          <div class="col-md-4 margin-auto">
+             {% if user.profile.image %}
+        <img class="img-rounded photo" src="{{user.profile.image.url}}">
+        {% endif %}
         {% if user.profile.location %}
                {{user.profile.location}} 
             
             {% endif %}
-         
-        <a href="{% url 'editProfile' %}">Edit Profile</a>
+            <br>
+         <br>
+        <a class="btn btn-small btn-background-des "href="{% url 'editProfile' %}">Edit Profile</a>
+          </div>
+        </div>
        
-      
+       
+      <p>Username: {{ user }}</p>
+    <p>First name: {{ user.first_name }}</p>
+    <p>Last name: {{ user.last_name }}</p>
+    <p>Email: {{ user.email }}</p>
     
     </div>
 {% endblock %}

@@ -9,7 +9,7 @@
           <form enctype="multipart/form-data" action="{% url 'editProfile' %}" method="POST" name="edit_user_profile" class="col-md-6">
             <div  class="form-group">
      <label for="id_username" class="control-label">Username:</label>
-       <input type="text" name="username" class="form-input" required  maxlength="150"  /><br>
+       <input type="text" name="username" class="form-input" id="id_username" value="{{user.username}}" required  maxlength="150"  /><br>
           <span class="helptext"><h6>Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</h6></span>
           <br>
              <label for="id_password" class="control-label">Password:</label> <br>
