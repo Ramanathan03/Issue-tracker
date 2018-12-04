@@ -5,11 +5,17 @@
   
   <div class="container">
       <div class="row">
+     
       
-      
-      <div class="col-md-12">
-      
-   </div> 
+      <div class="col-md-8">
+          <div>
+          <h4>{{ticket.title}} #{{ticket.id}}</h4>
+           {{ticket.status}}<strong> {{ticket.author}} </strong> <p>created this issue on {{ticket.date_create}}</p>
+      </div>
+   </div>
+   <div class="col-md-4">
+       <a class="nav-font" href="{% url 'add_tickets' %}"><button class="btn btn-success btn-small">Add Issue</button></a>
+   </div>
    </div>
    
    {{ticket_comment.comment}}

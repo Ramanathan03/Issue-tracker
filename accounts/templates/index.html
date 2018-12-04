@@ -3,35 +3,18 @@
 {% load static from staticfiles %}
 
 {% block content %}
-    
-    
-    
-    
-    {% if user.lastseen == timezone.now %}
-    <h3>Online</h3>
-    {% else %}
-    <h3>Last seen timezone.now</hs3>
-    {% endif %}
-    
-    {% for forms in forms %}
-    {{forms}}
-    {% endfor %}
+<form action="{% url 'search' %}" method="get">
+                <input type="search" name="q"/>
+                </form>
       {% for ticket in tickets %}
       <div class="row">
       <div class="col-md-12">
-      <h2><a href="{% url 'show_tickets' ticket.id  %}">{{ticket.title}}</a></h2>
+      <h5><a href="{% url 'show_tickets' ticket.id  %}">{{ticket.title}}</a></h5>
    </div> 
    </div>
-    {{ticket.date_create.timezone.timedelta}}
-   {{ ticket.id}}
-   <div class="row">
-       <div class="col-md-6">
-           {{ticket.author}}
-       </div>
-       <div class="col-md-6">
-   {{ticket.description}}
-   </div>
-   </div>
+    
+
+   
    {% endfor %}
    
    

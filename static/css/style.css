@@ -80,15 +80,39 @@
     width: 100%;
      border:solid  1px #bbb3b3;
 }
+#id_title{
+    height: 33px;
+    background-color: #ffffff;
+    background-image: none;
+    border: 1px solid #cccccc;
+    width: 100%;
+    border-radius: 4px;
+}
 .button-font{
   text-align: center;
     margin: auto;
     width: 60%;
 }
+.form-input{
+    background-color: white;
+    border-radius: 6px;
+    height: 35px;
+    width: 40%;
+}
+.overlapping{
+    height:0px;
+    width:100%;
+    border:none;
+}
 .extras-p{
   text-align: center;
     margin: auto;
     width: 30%;
+}
+.h3-text-shadow{
+    color: black;
+    font-weight: 600;
+    text-shadow: 0px 0px 1px;
 }
 .margin-auto{
   margin:auto;

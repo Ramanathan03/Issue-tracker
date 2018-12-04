@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages, auth
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
+from django.utils.timezone import now
 from accounts.views import user_login, index
 from checkout.views import checkout
 from django.contrib.auth.models import User

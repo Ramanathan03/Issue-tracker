@@ -3,15 +3,15 @@ from accounts.forms import loginForm, userRegisterForm, editProfile,bio_and_imag
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.template.context_processors import csrf
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from tickets.models import add_tickets_form
-from .models import bio
+from .models import Profile
 from django.utils import timezone
 # Create your views here.
   
 def index(request):
-    
     tickets = add_tickets_form.objects.all()
     print(tickets)
     return render(request,'index.html', {'tickets':tickets})
@@ -62,32 +62,26 @@ def logout(request):
     return redirect(reverse('index'))
     
 def profile(request, pk=None):
+    profile = request.user.profile
     if pk:
         user = User.objects.get(pk=pk)
     else:
         user = request.user
     return render(request,'user_profile.html', {'user':user})
-    
+@login_required    
 def edit_user_profile(request):
-    image_instance = bio.objects.get(user=request.user)
-    if request.method == "POST":
+    profile = request.user.profile
+    if request.method == 'POST':
         form = editProfile(request.POST, request.FILES, instance=request.user) 
-        bio_form = bio_and_image(request.POST, request.FILES, instance=image_instance)
+        bio_form = bio_and_image(request.POST, request.FILES, instance=profile)
+        print(form)
         if form.is_valid() and bio_form.is_valid():
             form.save()
-            data = bio_form.cleaned_data
-            profile_data = bio.objects.create(
-                user = request.user,
-                image = data['image'],
-                location = data['location'],
-                
-                )
-            return redirect(reverse('profile'))
-        else:
-            return redirect(reverse('editProfile'))
+            bio_form.save()
+            return redirect('profile')
     else:
-        form =editProfile(instance=request.user)
-        bio_form = bio_and_image(instance=image_instance)
+        form = editProfile(instance=request.user)
+        bio_form = bio_and_image(instance=profile)
     return render(request,'profile_edit.html',{"form":form, "bio_form":bio_form})
 
 def changePassword(request):

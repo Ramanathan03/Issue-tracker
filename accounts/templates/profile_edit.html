@@ -5,17 +5,31 @@
   
   <div class="container-fluid">
     <h1>Edit Profile</h1>
-       
-          <form enctype="multipart/form-data" action="{% url 'editProfile' %}" method="POST" name="edit-profile">
+       <div class="row">
+          <form enctype="multipart/form-data" action="{% url 'editProfile' %}" method="POST" name="edit_user_profile" class="col-md-6">
             <div  class="form-group">
-        {{ form.as_p}}
+     <label for="id_username" class="control-label">Username:</label>
+       <input type="text" name="username" class="form-input" required  maxlength="150"  /><br>
+          <span class="helptext"><h6>Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</h6></span>
+          <br>
+             <label for="id_password" class="control-label">Password:</label> <br>
+                <span class="helptext">Raw passwords are not stored, so there is no way to see this user's password, but you can change the password using <a href="../password/">this form</a>.</span>
+                         <br>
+                  <label for="id_first_name" class="control-label">First name:</label>
+                  <input type="text" name="first_name" id="id_first_name" maxlength="30" class="form-input" />
+                      <label for="id_last_name" class="control-label">Last name:</label>
+                      <input type="text" name="last_name" value="london" id="id_last_name" maxlength="30" class="form-input" />
+                          <label for="id_email" class="control-label">Email address:</label>
+                          <input type="email" name="email" value="Ramanathanannes@gmail.com" id="id_email" maxlength="254" class="form-input" />
         
         </div>
-    {{bio_form}}
+        <div  class="form-group">
+     {{bio_form|as_bootstrap}}
+    </div>
     <button class="btn btn-success" type="submit">Upload and save</button>
     {% csrf_token %}
 </form>  
-       
+       </div>
         
    
     

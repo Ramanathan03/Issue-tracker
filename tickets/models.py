@@ -5,21 +5,21 @@ from django.contrib import messages, auth
 from datetime import datetime, timedelta
 # Create your models here.
 
-BUG = 'BG'
-FEATURE = 'FR'
+BUG = 'BUG'
+FEATURE = 'FEATURE'
 priority = (('HIGH','High'),('LOW','Low'))
 types = (
   (BUG,'bugs'),
     (FEATURE,'feature')
     )
     
-NEW = 'NW'
-UNDER_REVIEW = 'UR'
-DECLINED = 'DE'
-NEEDS_MORE_INFO = 'NM'
-PLANNED = 'PD'
-IN_PROGRESS = 'IP'
-COMPLETED = 'CP'
+NEW = 'New'
+UNDER_REVIEW = 'Under_review'
+DECLINED = 'Declined'
+NEEDS_MORE_INFO = 'Needs_more_info'
+PLANNED = 'Planned'
+IN_PROGRESS = 'In_Progress'
+COMPLETED = 'Completed'
 STATUS_CHOICES = (
         (NEW, 'new'),
         (UNDER_REVIEW, 'under-review'),
@@ -34,10 +34,11 @@ class add_tickets_form(models.Model):
     title = models.CharField(max_length=250,blank=False)
     description = models.TextField()
     priority= models.CharField(max_length=15,choices=priority, default='LOW')
-    status = models.CharField(max_length=2, choices=STATUS_CHOICES, default=NEW)
-    type = models.CharField(max_length=15,choices=types,default='Bug')
+    status = models.CharField(max_length=30, choices=STATUS_CHOICES, default=NEW)
+    type = models.CharField(max_length=20,choices=types,default='Bug')
     views = models.IntegerField(default=0)
     date_create = models.DateTimeField(blank=True, null=True, default=one_day_hence)
+    last_seen = models.DateTimeField(blank=False, default=one_day_hence )
     author =models.ForeignKey(User, default='', on_delete=models.CASCADE)
 
     def __str__(self):

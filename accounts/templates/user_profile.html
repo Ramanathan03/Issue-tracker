@@ -12,10 +12,11 @@
     <p>Email: {{ user.email }}</p>
         
         
-        <img src="{{user.bio.image.url}}" width=246px>
-               {{user.bio.location}} 
+        <img src="{{user.profile.image.url}}" width=246px>
+        {% if user.profile.location %}
+               {{user.profile.location}} 
             
-            {{user.location}}
+            {% endif %}
          
         <a href="{% url 'editProfile' %}">Edit Profile</a>
        

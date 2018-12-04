@@ -3,7 +3,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import UserChangeForm
 from django.utils import timezone
-from .models import bio
+from django.forms import ModelForm
+from .models import Profile
 from django.core.exceptions import ValidationError
 
 
@@ -41,9 +42,9 @@ class editProfile(UserChangeForm):
         model = User
         fields = ['username','password','first_name','last_name','email']
 
-class bio_and_image(forms.ModelForm):
+class bio_and_image(ModelForm):
     class Meta:
-        model = bio
+        model = Profile
         fields = ['image','location']
     
     

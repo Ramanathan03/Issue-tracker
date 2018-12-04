@@ -1,5 +1,7 @@
 from django.contrib import admin
-from .models import bio
+from .models import Profile
 # Register your models here.
 
-admin.site.register(bio)
+@admin.register(Profile)
+class ProfileAdmin(admin.ModelAdmin):
+    pass

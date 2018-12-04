@@ -19,6 +19,7 @@ from accounts.views import index
 from accounts import urls as user_detail
 from tickets import urls as user_tickets
 from checkout import urls as checkout_urls
+from search import urls as search_urls
 from django.views import static
 from .settings import MEDIA_ROOT
 urlpatterns = [
@@ -27,6 +28,7 @@ urlpatterns = [
     url(r'^accounts/',include(user_detail)),
     url(r'^tickets/',include(user_tickets)),
     url(r'^checkout/',include(checkout_urls)),
+    url(r'^search/',include(search_urls)),
     url(r'^media/(?P<path>.*)$', static.serve, {'document_root':MEDIA_ROOT}),
     
 ]

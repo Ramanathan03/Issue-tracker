@@ -5,7 +5,7 @@
     
   
   <div class="container">
-    <h4  class="h3-font-size">Create your  account</h4>
+    <h4  class="h3-font-size h3-text-shadow">Create your  account</h4>
     <div class="row form-margin">
         <form method="POST" class="col-md-12 form-property">
         {% csrf_token %}
@@ -15,7 +15,12 @@
     </form>
      </div>      
        
-        
+        <br>
+    <div class="row">
+    <div class="col-md-12">
+        <p class="extras-p">Already have a account?<a class="nav-font" href="{% url 'login' %}">Sign In</p></a>
+    </div>
+    </div>
    
     
     </div>
