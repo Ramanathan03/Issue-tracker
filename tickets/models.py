@@ -5,11 +5,11 @@ from django.contrib import messages, auth
 from datetime import datetime, timedelta
 # Create your models here.
 
-BUG = 'BUG'
+BUG = 'Bug'
 FEATURE = 'FEATURE'
 priority = (('HIGH','High'),('LOW','Low'))
 types = (
-  (BUG,'bugs'),
+  (BUG,'Bug'),
     (FEATURE,'feature')
     )
     
@@ -33,11 +33,11 @@ def one_day_hence():
 class add_tickets_form(models.Model):
     title = models.CharField(max_length=250,blank=False)
     description = models.TextField()
-    priority= models.CharField(max_length=15,choices=priority, default='LOW')
+    priority= models.CharField(max_length=15,choices=priority, default='Low')
     status = models.CharField(max_length=30, choices=STATUS_CHOICES, default=NEW)
     type = models.CharField(max_length=20,choices=types,default='Bug')
     views = models.IntegerField(default=0)
-    date_create = models.DateTimeField(blank=True, null=True, default=one_day_hence)
+    date_create = models.DateTimeField(blank=True, null=True, default=timezone.now)
     last_seen = models.DateTimeField(blank=False, default=one_day_hence )
     author =models.ForeignKey(User, default='', on_delete=models.CASCADE)
 
@@ -48,7 +48,7 @@ class Comment_form(models.Model):
     user =models.ForeignKey(User, default='',  on_delete=models.CASCADE)
     ticket = models.ForeignKey(add_tickets_form, default='', on_delete=models.CASCADE,  related_name='comments')
     comment = models.TextField()
-    comment_created = models.DateTimeField(blank=True, null=True, default=one_day_hence)
+    comment_created = models.DateTimeField(blank=True, null=True, default=timezone.now)
     
     def __str__(self):
         return "{0} created by {1}".format(self.comment,self.user)

@@ -7,40 +7,68 @@
       <div class="row">
      
       
-      <div class="col-md-8">
-          <div>
-          <h4>{{ticket.title}} #{{ticket.id}}</h4>
-           {{ticket.status}}<strong> {{ticket.author}} </strong> <p>created this issue on {{ticket.date_create}}</p>
-      </div>
-   </div>
-   <div class="col-md-4">
-       <a class="nav-font" href="{% url 'add_tickets' %}"><button class="btn btn-success btn-small">Add Issue</button></a>
-   </div>
-   </div>
-   
-   {{ticket_comment.comment}}
+      <div class="col-md-12">
+          <div class="title-padding-show">
+           <div>
+            <a class="nav-font float-button " href="{% url 'add_tickets' %}"><button class="btn btn-success btn-small">Add Issue</button></a>
+           </div>
+          <h4><span>{{ticket.title}} </span><span>#{{ticket.id}}</span></h4> 
+           
+           </div>
+           <div class="title-padding-show">
+            {% if ticket.priority == "High" %}
+           <div class="priority-high">
+              <i class="material-icons icon-size" style="font-size: initial;">priority_high</i>{{ticket.priority}}
+           </div>
+           {% else %}
+           <div class="priority-low">
+             {{ticket.priority}}
+           </div>
+           {% endif %}
+           <div>
+           <span class="user-author-font">{{ticket.author}}</span> created this <span> issue on {{ticket.date_create.date}} </span> 
+           </div>
+          </div>
+      
+      <hr>
+          </div>
+              </div>
    
    <div class="row">
-       <div class="col-md-6">
-           {{ticket.author}}
-       </div>
-       <div class="col-md-6">
-           
+    <div class="col-xs-2 col-md-2">
+    <img class="author-description-image" src="{{ticket.author.profile.image.url}}" width="70%" style="float:right"></img> </div>
+       <div class="col-xs-10 col-md-10 whole-description-padding">
+        <div class="head-description">
+         <span class="user-author-font">{{ticket.author}}</span> created this on {{ticket.date_create.date}} 
+        </div>
+           <div class="body-description">
    {{ticket.description}}
-    
+    </div>
    </div>
    </div>
   
   {% for comments in ticket.comments.all %}
+   <div class="row">
+    <div class="col-xs-2 col-md-2">
+    <img class="author-description-image" src="{{comments.user.profile.image.url}}" width="70%" style="float:right"></img> </div>
+       <div class="col-xs-10 col-md-10 whole-description-padding">
+        <div class="head-description">
+         <span class="user-author-font">{{comments.author}}</span> created this {{comments.comment_created|timesince}} ago
+        </div>
+           <div class="body-description">
    {{comments.comment}}
+    </div>
+   </div>
+   </div>
    {% endfor %}
-   
-        <form method="POST" >
+   {% if user.is_authenticated %}
+   <div class="row form-margin-show">
+        <form method="POST"  class="col-md-12 title-padding-show">
         {% csrf_token %}
         {{commentbox}}
-        <button type="submit" class="btn btn-info btn-small">Comment</button>
+        <button type="submit" class="btn btn-success btn-small nav-font float-button ">Comment</button>
     </form>
-   
-    
+   </div>
+    {% endif %}
     </div>
 {% endblock %}

@@ -9,9 +9,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cerulean/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'font-awesome/css/fontawesome.min.css' %}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     {% block head_js %}
     {% endblock head_js %}
 </head>
@@ -21,7 +24,7 @@
             <nav class="nav-property">
                 <div class="nav-wrapper">
                     <a class="logo-padding"href="{% url 'index' %}"><img src="{{MEDIA_URL}}img/ps.png" width=70px></img></a>
-                
+                    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down padding1 nav-element-padding">
                     {% if user.is_authenticated %}
             <li><a class="nav-font" href="{% url 'add_tickets' %}">Add Issue</a></li>
@@ -32,11 +35,31 @@
              <li><a class="nav-font" href="{% url 'register' %}">Registration</a></li>
              {% endif %}
                 </ul>
+                <ul class="sidenav" id="mobile-demo">
+                     {% if user.is_authenticated %}
+            <li><a class="nav-font" href="{% url 'add_tickets' %}">Add Issue</a></li>
+            <li><a class="nav-font" href="{% url 'logout' %}">Logout</a></li>
+            <li><a class="nav-font" href="{% url 'profile' %}">Profile</a></li>
+            {% else %}
+             <li><a class="nav-font" href="{% url 'login' %}">Login</a></li>
+             <li><a class="nav-font" href="{% url 'register' %}">Registration</a></li>
+             {% endif %}
+                    </ul>
                 </div>
             </nav>
         </header>
     
         {% block content %} {% endblock %}
+        <script>
+    
+      $(document).ready(function() {
+
+    $('.sidenav').sidenav();
+    $('.slider').slider();      
+   
+  });
+  
+    </script>
     
 </body>
 </html>

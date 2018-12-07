@@ -4,4 +4,4 @@ from tickets.models import add_tickets_form
 
 def do_search(request):
     issue = add_tickets_form.objects.filter(title__icontains=request.GET['q'])
-    return render(request, 'index.html', {'issue':issue})
+    return render(request, 'search.html', {'issue':issue, "query": request.GET.get('q', None)})
