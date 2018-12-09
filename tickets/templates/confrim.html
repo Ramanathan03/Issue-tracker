@@ -3,12 +3,15 @@
 {% load static from staticfiles %}
 
 {% block content %}
+<div class="container">
     <form method="post" action="{% url 'confrim' %}" class="createticketform" enctype="multipart/form-data">
-        <fieldset class="form-group">
-            <legend>Create a new ticket</legend>
-            {% csrf_token %}
-            {{  form|as_bootstrap }}
-            <button type="submit" class="btn btn-primary">Create</button>
-        </fieldset>
-    </form>
+        
+            <h3 class="h3-text-shadow">Confrim your issue </h3>
+             {% csrf_token %}
+        
+        {{form| as_bootstrap}}
+            <button type="submit" class="btn btn-success nav-font  btn-small">Confrim Issue</button>
+        </form>
+        
+    </div>
 {% endblock %}

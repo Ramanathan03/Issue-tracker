@@ -8,6 +8,9 @@
           <div class="col-md-4 margin-auto">
              {% if user.profile.image %}
         <img class="img-rounded photo" src="{{user.profile.image.url}}" width="40%">
+        {% else %}
+    
+    <img class="img-rounded photo" src="{{MEDIA_URL}}img/dummy-user.png" width="40%" ></img> 
         {% endif %}
         {% if user.profile.location %}
                <p class="font-p"> <i class="material-icons">location_on</i> {{user.profile.location}} </p>

@@ -27,22 +27,22 @@
                     <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down padding1 nav-element-padding">
                     {% if user.is_authenticated %}
-            <li><a class="nav-font" href="{% url 'add_tickets' %}">Add Issue</a></li>
-            <li><a class="nav-font" href="{% url 'logout' %}">Logout</a></li>
-            <li><a class="nav-font" href="{% url 'profile' %}">Profile</a></li>
+            <li><a class="nav-font text-decoration-white" style="text-decoration: none;color: white;" href="{% url 'add_tickets' %}">Add Issue</a></li>
+            <li><a class="nav-font text-decoration-white" style="text-decoration: none;color: white;" href="{% url 'logout' %}">Logout</a></li>
+            <li><a class="nav-font text-decoration-white" style="text-decoration: none;color: white;" href="{% url 'profile' %}">Profile</a></li>
             {% else %}
-             <li><a class="nav-font" href="{% url 'login' %}">Login</a></li>
-             <li><a class="nav-font" href="{% url 'register' %}">Registration</a></li>
+             <li><a class="nav-font text-decoration-white" style="text-decoration: none;color: white;" href="{% url 'login' %}">Login</a></li>
+             <li><a class="nav-font text-decoration-white" style="text-decoration: none;color: white;" href="{% url 'register' %}">Registration</a></li>
              {% endif %}
                 </ul>
                 <ul class="sidenav" id="mobile-demo">
                      {% if user.is_authenticated %}
-            <li><a class="nav-font" href="{% url 'add_tickets' %}">Add Issue</a></li>
-            <li><a class="nav-font" href="{% url 'logout' %}">Logout</a></li>
-            <li><a class="nav-font" href="{% url 'profile' %}">Profile</a></li>
+            <li><a class="nav-font text-decoration-white" style="text-decoration: none;color: white;" href="{% url 'add_tickets' %}">Add Issue</a></li>
+            <li><a class="nav-font text-decoration-white" style="text-decoration: none;color: white;" href="{% url 'logout' %}">Logout</a></li>
+            <li><a class="nav-font text-decoration-white" style="text-decoration: none;color: white;" href="{% url 'profile' %}">Profile</a></li>
             {% else %}
-             <li><a class="nav-font" href="{% url 'login' %}">Login</a></li>
-             <li><a class="nav-font" href="{% url 'register' %}">Registration</a></li>
+             <li><a class="nav-font text-decoration-white" style="text-decoration: none;color: white;" href="{% url 'login' %}">Login</a></li>
+             <li><a class="nav-font text-decoration-white" style="text-decoration: none;color: white;" href="{% url 'register' %}">Registration</a></li>
              {% endif %}
                     </ul>
                 </div>

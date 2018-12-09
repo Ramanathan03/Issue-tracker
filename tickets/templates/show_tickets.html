@@ -9,10 +9,11 @@
       
       <div class="col-md-12">
           <div class="title-padding-show">
+          
            <div>
             <a class="nav-font float-button " href="{% url 'add_tickets' %}"><button class="btn btn-success btn-small">Add Issue</button></a>
            </div>
-          <h4><span>{{ticket.title}} </span><span>#{{ticket.id}}</span></h4> 
+          <h4 class="title-size-in-show"><span>{{ticket.title}} </span><span>#{{ticket.id}}</span></h4> 
            
            </div>
            <div class="title-padding-show">
@@ -35,8 +36,13 @@
               </div>
    
    <div class="row">
+    {% if ticket.author.profile.image %}
     <div class="col-xs-2 col-md-2">
     <img class="author-description-image" src="{{ticket.author.profile.image.url}}" width="70%" style="float:right"></img> </div>
+    {% else %}
+    <div class="col-xs-2 col-md-2">
+    <img class="author-description-image" src="{{MEDIA_URL}}img/dummy-user.png" width="70%" style="float:right"></img> </div>
+    {% endif %}
        <div class="col-xs-10 col-md-10 whole-description-padding">
         <div class="head-description">
          <span class="user-author-font">{{ticket.author}}</span> created this on {{ticket.date_create.date}} 
@@ -49,11 +55,16 @@
   
   {% for comments in ticket.comments.all %}
    <div class="row">
+    {% if comments.user.profile.image %}
     <div class="col-xs-2 col-md-2">
     <img class="author-description-image" src="{{comments.user.profile.image.url}}" width="70%" style="float:right"></img> </div>
+    {% else %}
+    <div class="col-xs-2 col-md-2">
+    <img class="author-description-image" src="{{MEDIA_URL}}img/dummy-user.png" width="70%" style="float:right"></img> </div>
+     {% endif %}
        <div class="col-xs-10 col-md-10 whole-description-padding">
         <div class="head-description">
-         <span class="user-author-font">{{comments.author}}</span> created this {{comments.comment_created|timesince}} ago
+         <span class="user-author-font">{{comments.user}}</span> created this {{comments.comment_created|timesince}} ago
         </div>
            <div class="body-description">
    {{comments.comment}}

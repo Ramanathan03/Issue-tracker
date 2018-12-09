@@ -60,7 +60,9 @@ def show_tickets(request, pk):
     
     comment = Comment_form.objects.all()
     return render(request, 'show_tickets.html', {'ticket':ticket, 'commentbox':commentbox, 'comment':comment})
- 
+    
+
+    
 @login_required
 def confrim(request):
     title       = request.session['title']
