@@ -1,14 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="issue-list-page">
-    <div class="list-header">
-        <h1 class="h4">Search Results{% if query %} for "{{ query }}"{% endif %}</h1>
+<div class="container">
+<div class="row">
+    <div class="col-md-6 col-md-offset-3" style="background-color: lightyellow;margin-top: 25px;">
+    <div>
+        <h1  style="font-size: 18px;">Search Results{% if query %} for "{{ query }}"{% endif %}</h1>
     </div>
-    <div class="dashboard-issues">
+    <div>
         {% if issue %}
-        <div class="list-group list-group-flush">
+        <div>
             {% for issue in issue %}
-                <h5><a href="{% url 'show_tickets' issue.id  %}">{{issue.title}}</a></h5>
+                <h5><a class="link-title-decoration" href="{% url 'show_tickets' issue.id  %}">{{issue.title}}</a></h5>
             {% endfor %}
         </div>
         {% else %}
@@ -17,9 +19,11 @@
         </div>
         {% endif %}
     </div>
-    <div class="search-create">
+    <div class="search-create" style="padding-left: 20px;font-size: 18px;">
       <h2 class="h5">Didn't find what you wanted?</h2>
-     
+      <button class=" btn btn-success"> <a class="nav-font text-decoration-white" style="text-decoration: none;color: white;" href="{% url 'add_tickets' %}">Add Issue</a> </button>
     </div>
+    </div>
+</div>
 </div>
 {% endblock %}
