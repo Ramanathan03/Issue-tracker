@@ -61,7 +61,17 @@ def show_tickets(request, pk):
     comment = Comment_form.objects.all()
     return render(request, 'show_tickets.html', {'ticket':ticket, 'commentbox':commentbox, 'comment':comment})
     
-
+@login_required
+def edit_tickets(request,id):
+    ticket =get_object_or_404(add_tickets_form,pk=id)
+    if request.method == "POST":
+        form = ticketsForm(request.POST, instance=ticket)
+        if form.is_valid():
+            form.save()
+            return redirect(show_tickets, ticket.id)
+    else:
+        form = ticketsForm(instance=ticket)
+    return render(request,"edit_tickets.html",{'form':form})
     
 @login_required
 def confrim(request):
