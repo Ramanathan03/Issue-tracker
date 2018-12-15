@@ -17,7 +17,8 @@
 
  <script src="https://js.stripe.com/v3/"></script>
 <div class="container">
-<form action="{% url 'checkout' %}" method="post" id="payment-form" class="profile-background np-margin-top">
+  <div class="np-margin-top">
+<form action="{% url 'checkout' %}" method="post" id="payment-form" class="col-md-6 col-md-offset-3" style="background-color:gainsboro;">
     {% csrf_token %}
   <div class="form-row">
     <label for="card-element" class="font-icon">
@@ -29,12 +30,21 @@
     <!-- Used to display form errors. -->
     <div id="card-errors" role="alert"></div>
   </div>
- <br>
+  <p style="color:grey; font-weight:700;"><span class="glyphicon glyphicon-euro" aria-hidden="true"></span>2 euro for fix your issue</p>
+ 
  <div class="margin-left-checkout">
    <button class="btn btn-success nav-font">  Submit Payment</button>
   </div>
+  <br>
 </form>
-  
+</div>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <p style="color:grey; font-weight:700;">Advantage of paying for High Priority you will get immediate response from us and you can see how many views you got for your issue and you can edit your issue whenever you want.
+ Thank you for helping us to improve our site</p>
+  </div>
+</div>
+ 
 </div>
 <script>
     // Create a Stripe client.

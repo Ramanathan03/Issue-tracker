@@ -5,14 +5,12 @@ Welcome to Problem Solver, a community-driven site where you can report bugs or 
 
 ## UX
 These website help user to fix there problem in coding and user can request there feature to help improve the website.These project is presented simply so user can easily understand what they can do. 
-Overall my target audience are amature in coding and freshers to these coding life.[Wireframes](https://www.lucidchart.com/invitations/accept/4036131b-b287-4dba-a724-fa5eb6d6dc22)
+Overall my target audience are amature in coding and freshers to these coding life. [Wireframe](https://files.slack.com/files-pri/T0L30B202-FESFD5X7D/image.png) 
 
 ## Features
 ### Existing Features
  - website have user login and user register 
  - user can add issues using add issue form
- - only high priority user can edit the issue 
- - only high priority user can see the views
  - user can search the issues 
  - other user can also help users to solve their issues by comment form
 
@@ -22,15 +20,15 @@ Overall my target audience are amature in coding and freshers to these coding li
 ### Technologies Used 
 In this section, I  mention main languages, frameworks, libraries, and any other tools that I used to construct this project.
   - [Bootstrap](https://getbootstrap.com/docs/4.0/getting-started/introduction/): 
-       * I used a **Bootstrap** for design and UX
+       * I used a **Bootstrap** for Responsiveness and Grid
   - [Django](https://docs.djangoproject.com/en/2.1/): 
      * The whole project mainly depend on **Django**.
   - [Materialize css](https://materializecss.com/):
-      * I used **materializecss** to design and icons. 
+      * I used **materializecss** for icons and nav-mobile view. 
   - [AWS](https://aws.amazon.com/):
       * I used **AWS** to host my static and image files.
   - [Stripe](https://stripe.com/gb)
-     * Used **stripe** for payment because stripe will do secure stuffs wedon't have to worry
+     * Used **stripe** for payment because stripe will do secure stuffs we don't have to worry
   - [Chart js](https://www.chartjs.org/)
      * Used  **chart js** to show working proccess by chart
   

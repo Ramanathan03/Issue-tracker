@@ -17,7 +17,7 @@
             <button class="btn btn-success btn-small nav-font float-button"><a class="nav-font float-button" style="color:White; text-decoration:none;" href="{% url 'add_tickets' %}">Add Issue</a></button>
             {% endif %}
            </div>
-          <h4 class="title-size-in-show" style="color:black;"><span>{{ticket.title}} </span><span>#{{ticket.id}}</span> 
+          <h4 class="title-size-in-show" style="color:black;"><span>{{ticket.title}} </span><span>#{{ticket.id}} </span> 
           </h4> 
            
            </div>
@@ -48,17 +48,28 @@
     <div class="col-xs-2 col-md-2">
     <img class="author-description-image" src="{{MEDIA_URL}}img/dummy-user.png" width="70%" style="float:right"></img> </div>
     {% endif %}
-       <div class="col-xs-10 col-md-10 whole-description-padding">
+       <div class="col-xs-10 col-md-10 ">
+        <div class="whole-description-padding">
         <div class="head-description">
-         <span class="user-author-font">{{ticket.author}}</span> created this on {{ticket.date_create}} 
-         {% if user == ticket.author and ticket.priority == "HIGH" %}
-         <span>
-         <p class=" float-button"><i class="material-icons">visibility</i> {{ticket.views}}</p> </span>
-         {% endif %}
+         <span class="user-author-font">{{ticket.author}}</span> <span>created this on {{ticket.date_create}} </span>
+        {% if user == ticket.author %}
+        <span class="float-button">
+          <a class='dropdown-trigger ' href='#' data-target='dropdown1'><i class="material-icons">more_horiz</i></a>
+
+  <!-- Dropdown Structure -->
+  <ul id='dropdown1' class='dropdown-content'>
+    <li><a  style="color:Black; text-decoration:none;" href="{% url 'delete' ticket.id %}">Delete</a></li>
+    {% if user == ticket.author and ticket.priority == "HIGH" %}
+    <li><p class="margin-auto"><i class="material-icons">visibility</i>{{ticket.views}}</p></li>
+    {% endif %}
+  </ul>
+  </span>
+      {% endif %}   
         </div>
            <div class="body-description">
    {{ticket.description}}
     </div>
+   </div>
    </div>
    </div>
   
@@ -71,24 +82,47 @@
     <div class="col-xs-2 col-md-2">
     <img class="author-description-image" src="{{MEDIA_URL}}img/dummy-user.png" width="70%" style="float:right"></img> </div>
      {% endif %}
-       <div class="col-xs-10 col-md-10 whole-description-padding">
+       <div class="col-xs-10 col-md-10">
+        <div class="whole-description-padding">
         <div class="head-description">
          <span class="user-author-font">{{comments.user}}</span> created this {{comments.comment_created}} 
+         {% if user == comments.user %}
+        <span class="float-button">
+          <a class='dropdown-trigger ' href='#' data-target='dropdown1'><i class="material-icons">more_horiz</i></a>
+
+  <!-- Dropdown Structure -->
+  <ul id='dropdown1' class='dropdown-content'>
+    <li><a  style="color:Black; text-decoration:none;" href="{% url 'delete_comments' comments.id %}">Delete</a></li>
+    </ul>
+    </span>
+    {% endif %}
         </div>
            <div class="body-description">
    {{comments.comment}}
     </div>
    </div>
    </div>
+   </div>
    {% endfor %}
    {% if user.is_authenticated %}
    <div class="row form-margin-show">
-        <form method="POST"  class="col-md-12 title-padding-show">
+       <div class="title-padding-show">
+        <form method="POST"  class="col-md-12">
         {% csrf_token %}
         {{commentbox}}
         <button type="submit" class="btn btn-success btn-small nav-font float-button ">Comment</button>
     </form>
-   </div>
-    {% endif %}
     </div>
+   </div>
+   {% endif %}
+   
+    </div>
+    <script>
+     $(document).ready(function() {
+
+   
+    $('.dropdown-trigger').dropdown();
+   
+  });
+    </script>
 {% endblock %}

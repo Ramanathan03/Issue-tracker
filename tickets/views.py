@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages, auth
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
+from django.views.generic import RedirectView
 from django.utils.timezone import now
 from accounts.views import user_login, index
 from checkout.views import checkout
@@ -36,6 +37,7 @@ def add_tickets(request):
     else:
         forms = ticketsForm()
     return render(request, 'add_tickets.html',{'forms':forms})
+    
 
 def show_tickets(request, pk):
     ticket = get_object_or_404(add_tickets_form , pk=pk)
@@ -73,6 +75,16 @@ def edit_tickets(request,id):
         form = ticketsForm(instance=ticket)
     return render(request,"edit_tickets.html",{'form':form})
     
+@login_required
+def delete_ticket(request,id):
+    ticket = get_object_or_404(add_tickets_form,pk=id)
+    ticket.delete()
+    return redirect(add_tickets)
+@login_required
+def delete_comments(request, id):
+    comments = get_object_or_404(Comment_form, pk=id)
+    comments.delete()
+    return redirect(index)
 @login_required
 def confrim(request):
     title       = request.session['title']

@@ -11,10 +11,12 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'font-awesome/css/fontawesome.min.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/introjs.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/intro.min.js"></script>
     {% block head_js %}
     {% endblock head_js %}
 </head>
@@ -30,8 +32,10 @@
             <li><a class="nav-font text-decoration-white" style="text-decoration: none;color: white;" href="{% url 'add_tickets' %}">Add Issue</a></li>
             <li><a class="nav-font text-decoration-white" style="text-decoration: none;color: white;" href="{% url 'logout' %}">Logout</a></li>
             <li><a class="nav-font text-decoration-white" style="text-decoration: none;color: white;" href="{% url 'profile' %}">Profile</a></li>
+
             {% else %}
-             <li><a class="nav-font text-decoration-white" style="text-decoration: none;color: white;" href="{% url 'login' %}">Login</a></li>
+            
+            <li><a class="nav-font text-decoration-white" style="text-decoration: none;color: white;" href="{% url 'login' %}">Login</a></li>
              <li><a class="nav-font text-decoration-white" style="text-decoration: none;color: white;" href="{% url 'register' %}">Registration</a></li>
              {% endif %}
                 </ul>
@@ -40,7 +44,9 @@
             <li><a class="nav-font text-decoration-white" style="text-decoration: none;color: Black;" href="{% url 'add_tickets' %}">Add Issue</a></li>
             <li><a class="nav-font text-decoration-white" style="text-decoration: none;color: Black;" href="{% url 'logout' %}">Logout</a></li>
             <li><a class="nav-font text-decoration-white" style="text-decoration: none;color: Black;" href="{% url 'profile' %}">Profile</a></li>
+
             {% else %}
+            
              <li><a class="nav-font text-decoration-white" style="text-decoration: none;color: Black;" href="{% url 'login' %}">Login</a></li>
              <li><a class="nav-font text-decoration-white" style="text-decoration: none;color: Black;" href="{% url 'register' %}">Registration</a></li>
              {% endif %}
@@ -55,7 +61,8 @@
       $(document).ready(function() {
 
     $('.sidenav').sidenav();
-    $('.slider').slider();      
+    $('.slider').slider(); 
+    $('.dropdown-trigger').dropdown();
    
   });
   

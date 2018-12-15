@@ -6,11 +6,11 @@
 <div class="container">
     <form method="post" action="{% url 'confrim' %}" class="createticketform" enctype="multipart/form-data">
         
-            <h3 class="h3-text-shadow">Confrim your issue </h3>
+            <h3 class="h3-text-shadow">Confirm your issue </h3>
              {% csrf_token %}
         
         {{form| as_bootstrap}}
-            <button type="submit" class="btn btn-success nav-font  btn-small">Confrim Issue</button>
+            <button type="submit" class="btn btn-success nav-font  btn-small">Confirm Issue</button>
         </form>
         
     </div>

@@ -11,7 +11,8 @@
     <h3 class="h3-font-size h3-text-shadow">Login to PS</h3>
     </div>
     </div>
-    <div class="row form-margin">
+    <div class="form-margin">
+    <div class="row ">
     <form method="POST" class="col-md-12 form-property">
         {% csrf_token %}
         
@@ -19,12 +20,12 @@
         <button type="submit" class="btn btn-success btn-small nav-font button-font">Login</button>
         <br>
     </form>
-    
+    </div>
     </div>
     <br>
     <div class="row">
     <div class="col-md-12">
-        <p class="extras-p">New to PS?<a class="nav-font" href="{% url 'register' %}">Create an account</p></a>
+        <p class="extras-p">New to PS?<a style="text-decoration:none;"class="nav-font" href="{% url 'register' %}">Create an account</p></a>
     </div>
     </div>
     </div>

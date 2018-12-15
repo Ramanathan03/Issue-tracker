@@ -25,6 +25,7 @@ def checkout(request):
                     description = "We will fix your problem in few hours" and request.user.email,
                     source = request.POST.get('stripeToken'),
                     )
+                print(customer.amount)
         except stripe.error.CardError:
                 messages.error(request,"Your card was declined")
             

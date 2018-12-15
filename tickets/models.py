@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django.contrib import messages, auth
+from django.core.urlresolvers import reverse
 from datetime import datetime, timedelta
 # Create your models here.
 
@@ -43,6 +44,8 @@ class add_tickets_form(models.Model):
 
     def __str__(self):
         return  "{0}-{1}-{2}".format(self.title,self.description,self.author)
+        
+    
         
 class Comment_form(models.Model):
     user =models.ForeignKey(User, default='',  on_delete=models.CASCADE)

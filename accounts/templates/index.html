@@ -60,7 +60,7 @@
                     <a class="link-title-decoration" style="text-decoration: none;color: black;" href="{% url 'show_tickets' ticket.id  %}">{{ticket.title}}</a>
                    <span class="float-button">
                         {% if ticket.status == "New" %}
-                         <p class="float-button status-new-font">is:{{ticket.status}}</p>
+                         <p class="float-button status-new-font" >is:{{ticket.status}}</p>
                          {% endif %}
                         {% if ticket.status == "Under_review" %}
                          <p class="float-button status-under-review-font">is:{{ticket.status}}</p>
@@ -72,7 +72,7 @@
                          <p class="float-button status-needs-more-info-font">is:{{ticket.status}}</p>
                          {% endif %}
                         {%  if ticket.status == "Planned" %}
-                         <p class="float-button status-planned-font">is:{{ticket.status}}</p>
+                         <p class="float-button status-planned-font" >is:{{ticket.status}}</p>
                          {% endif %}
                         {%  if ticket.status == "In_Progress" %}
                          <p class="float-button status-in-progress-font">is:{{ticket.status}}</p>
@@ -113,7 +113,7 @@
                     <a class="link-title-decoration" style="text-decoration: none;color: black;" href="{% url 'show_tickets' ticket.id  %}">{{ticket.title}}</a>
                    <span class="float-button">
                         {% if ticket.status == "New" %}
-                         <p class="float-button status-new-font">is:{{ticket.status}}</p>
+                         <p class="float-button status-new-font" >is:{{ticket.status}}</p>
                          {% endif %}
                         {% if ticket.status == "Under_review" %}
                          <p class="float-button status-under-review-font">is:{{ticket.status}}</p>
@@ -128,7 +128,7 @@
                          <p class="float-button status-planned-font">is:{{ticket.status}}</p>
                          {% endif %}
                         {%  if ticket.status == "In_Progress" %}
-                         <p class="float-button status-in-progress-font">is:{{ticket.status}}</p>
+                         <p class="float-button status-in-progress-font" >is:{{ticket.status}}</p>
                          {% endif %}
                         {%  if ticket.status == "Completed" %}
                          <p class="float-button status-completed-font">is:{{ticket.status}}</p> 
