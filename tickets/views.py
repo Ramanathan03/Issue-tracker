@@ -12,15 +12,17 @@ from accounts.views import user_login, index
 from checkout.views import checkout
 from django.contrib.auth.models import User
 # Create your views here.
+
 @login_required
-def add_tickets(request):
+def add_tickets(request):   
     Priority = 'HIGH'
     if request.method == "POST":
         forms = ticketsForm(request.POST)
+        
         if forms.is_valid() and 'HIGH' in request.POST['priority'] :
              request.session['priority'] = forms.cleaned_data['priority']
              request.session['title']       = forms.cleaned_data['title']
-             request.session['description'] = forms.cleaned_data['description']
+             request.session['description'] = forms.cleaned_data['description']   
              request.session['type'] = forms.cleaned_data['type']
              return redirect(checkout)
         if forms.is_valid():
@@ -80,11 +82,13 @@ def delete_ticket(request,id):
     ticket = get_object_or_404(add_tickets_form,pk=id)
     ticket.delete()
     return redirect(add_tickets)
+
 @login_required
 def delete_comments(request, id):
     comments = get_object_or_404(Comment_form, pk=id)
     comments.delete()
     return redirect(index)
+
 @login_required
 def confrim(request):
     title       = request.session['title']
@@ -115,4 +119,23 @@ def confrim(request):
 
     return render(request, 'confrim.html', {'form': form})           
 
+@login_required
+def upvote_tickets(request,id):
+    ticket = get_object_or_404(add_tickets_form, pk=id)
+    ticket.like_and_dislike += 1
+    ticket.save()
+    return redirect(show_tickets, ticket.id)
+
+@login_required
+def down_vote(request,id):
+    ticket = get_object_or_404(add_tickets_form, pk=id)
+    if ticket.like_and_dislike == 0:
+        ticket.like_and_dislike = 0
+        ticket.save()
+    else:
+     ticket.like_and_dislike -= 1
+     ticket.save()
+    return redirect(show_tickets, ticket.id)
+    
+    
             

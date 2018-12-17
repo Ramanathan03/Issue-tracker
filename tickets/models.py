@@ -40,12 +40,15 @@ class add_tickets_form(models.Model):
     views = models.IntegerField(default=0)
     date_create = models.DateTimeField(blank=True, null=True, default=timezone.now)
     last_seen = models.DateTimeField(blank=False, default=one_day_hence )
+    like_and_dislike = models.IntegerField(default=0)
     author =models.ForeignKey(User, default='', on_delete=models.CASCADE)
 
     def __str__(self):
         return  "{0}-{1}-{2}".format(self.title,self.description,self.author)
-        
+
     
+   
+        
         
 class Comment_form(models.Model):
     user =models.ForeignKey(User, default='',  on_delete=models.CASCADE)

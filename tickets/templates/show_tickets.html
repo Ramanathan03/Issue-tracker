@@ -5,10 +5,20 @@
   
   <div class="container">
       <div class="row">
+       <div class="col-xs-2 col-md-2">
+        <div class="float-button" >
+      <a style="color:Black; text-decoration:none;" href="{% url 'upvote' ticket.id %}">
+       <i style="font-size: 45px;"class="material-icons">arrow_drop_up</i>
+       </a>
+      <p style="text-align: center;font-weight: 600;"> {{ticket.like_and_dislike}}</p>
+      <a style="color:Black; text-decoration:none;" href="{% url 'dislike' ticket.id %}">
+       <i style="font-size: 45px;"class="material-icons">arrow_drop_down</i>
+       </a>
      
-      
-      <div class="col-md-12">
-          <div class="title-padding-show">
+      </div>
+       </div>
+       <div class="col-xs-10 col-md-10">
+          <div>
           
            <div>
             {% if user == ticket.author and ticket.priority == "HIGH" %}
@@ -19,9 +29,9 @@
            </div>
           <h4 class="title-size-in-show" style="color:black;"><span>{{ticket.title}} </span><span>#{{ticket.id}} </span> 
           </h4> 
-           
+            
            </div>
-           <div class="title-padding-show">
+           <div>
             {% if ticket.priority == "High" %}
            <div class="priority-high">
               <i class="material-icons icon-size" style="font-size: initial;">priority_high</i>{{ticket.priority}}

@@ -13,7 +13,6 @@ from django.utils import timezone
   
 def index(request):
     tickets = add_tickets_form.objects.all()
-    print(tickets)
     return render(request,'index.html', {'tickets':tickets})
 
 def user_login(request):
@@ -68,6 +67,7 @@ def profile(request, pk=None):
     else:
         user = request.user
     return render(request,'user_profile.html', {'user':user})
+
 @login_required    
 def edit_user_profile(request):
     profile = request.user.profile
