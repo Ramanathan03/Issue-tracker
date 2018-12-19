@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load bootstrap_tags %}
+{% block content %}
+    
+  
+  <div class="container">
+    <h3 class="h3-text-shadow">Delete Confrimation</h3>
+        <form class="profile-background" style="text-align:center;" method="post" action="{% url 'delete_comments' comments.id%}" class="col-md-6 col-md-offset-3">
+            {% csrf_token %}
+          <p style="font-weight:600;">Are you sure you want to delete "{{comments.comment}}"?</p>
+            <button style="text-align:center; margin:auto; margin-bottom:5px;" type="submit" class="btn btn-danger nav-font  btn-small">Confrim</button>
+            
+            <a style="font-weight:600;" class="btn btn-warning btn-small" href="{% url 'edit_comments' comments.id %}">Cancel</a>
+        </form>
+        
+            
+       
+        
+   
+    
+    </div>
+{% endblock %}

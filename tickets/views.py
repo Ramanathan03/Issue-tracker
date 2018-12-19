@@ -62,8 +62,10 @@ def show_tickets(request, pk):
     else:
         commentbox = CommentForm()
     
-    comment = Comment_form.objects.all()
-    return render(request, 'show_tickets.html', {'ticket':ticket, 'commentbox':commentbox, 'comment':comment})
+    #comment = Comment_form.objects.all()
+    #like = like_posts.objects.all()
+    
+    return render(request, 'show_tickets.html', {'ticket':ticket, 'commentbox':commentbox})
     
 @login_required
 def edit_tickets(request,id):
@@ -76,18 +78,37 @@ def edit_tickets(request,id):
     else:
         form = ticketsForm(instance=ticket)
     return render(request,"edit_tickets.html",{'form':form})
-    
+ 
+@login_required
+def edit_comments(request,id):
+    comment = get_object_or_404(Comment_form,pk=id)
+    if request.method == "POST":
+        form = CommentForm(request.POST, instance=comment)
+        if form.is_valid():
+            form.save()
+            return redirect(index)
+    else:
+        form = CommentForm(instance=comment)
+    return render(request,"edit_comments.html",{'form':form})
+
 @login_required
 def delete_ticket(request,id):
     ticket = get_object_or_404(add_tickets_form,pk=id)
-    ticket.delete()
-    return redirect(add_tickets)
+    if request.method == "POST":
+        ticket.delete()
+        return redirect(add_tickets)
+    return render(request,"cofirm-ticket-delete.html",{'ticket':ticket})
+        
+
 
 @login_required
 def delete_comments(request, id):
     comments = get_object_or_404(Comment_form, pk=id)
-    comments.delete()
-    return redirect(index)
+    if request.method == "POST":
+       comments.delete()
+       return redirect(index)
+    return render(request,"confirm_delete.html",{'comments':comments})
+
 
 @login_required
 def confrim(request):
@@ -122,8 +143,11 @@ def confrim(request):
 @login_required
 def upvote_tickets(request,id):
     ticket = get_object_or_404(add_tickets_form, pk=id)
-    ticket.like_and_dislike += 1
-    ticket.save()
+    if ticket.like_and_dislike == 2  :
+          ticket.like_and_dislike -= 1
+    else:
+        ticket.like_and_dislike += 1
+        ticket.save()
     return redirect(show_tickets, ticket.id)
 
 @login_required
@@ -136,6 +160,6 @@ def down_vote(request,id):
      ticket.like_and_dislike -= 1
      ticket.save()
     return redirect(show_tickets, ticket.id)
-    
+
     
             

@@ -7,7 +7,7 @@ Welcome to Problem Solver, a community-driven site where you can report bugs or 
 These website help user to fix there problem in coding and user can request there feature to help improve the website.These project is presented simply so user can easily understand what they can do. 
 * In Initial commit I accidentally added my secret key, in real world projects I am sure I am not going to added that If I did I will change my secret key.
 * If user didn't  reply even though that solution worked the status of issue will never changed by admin.
- 
+* After cancel the comment delete-confirmation,user will take to edit comment it because they maybe accidentally clicked the delete button because edit  button is next to delete button.
 * Advantages of making payment for high priority in issues is user can edit issues and they will get immediate response from admin and also they can see how many views they got for there issue.
 
 Overall my target audience are amature in coding and freshers to these coding life. [Wireframe](https://files.slack.com/files-pri/T0L30B202-FESFD5X7D/image.png) 

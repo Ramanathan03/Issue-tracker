@@ -26,10 +26,13 @@
             {% else %}
             <button class="btn btn-success btn-small nav-font float-button"><a class="nav-font float-button" style="color:White; text-decoration:none;" href="{% url 'add_tickets' %}">Add Issue</a></button>
             {% endif %}
+            
            </div>
           <h4 class="title-size-in-show" style="color:black;"><span>{{ticket.title}} </span><span>#{{ticket.id}} </span> 
           </h4> 
-            
+          {% for like in like %}
+            <p>{{like.likes}}</p>
+            {% endfor %}
            </div>
            <div>
             {% if ticket.priority == "High" %}
@@ -42,6 +45,8 @@
            </div>
            {% endif %}
            <div>
+            
+       
            <span class="user-author-font">{{ticket.author}}</span> created this <span> issue on {{ticket.date_create.date}} </span> 
            </div>
           </div>
@@ -95,13 +100,14 @@
        <div class="col-xs-10 col-md-10">
         <div class="whole-description-padding">
         <div class="head-description">
-         <span class="user-author-font">{{comments.user}}</span> created this {{comments.comment_created}} 
+         <span class="user-author-font">{{comments.user}}</span> created this {{comments.comment_created}} {{comments.id}}
          {% if user == comments.user %}
         <span class="float-button">
           <a class='dropdown-trigger ' href='#' data-target='dropdown1'><i class="material-icons">more_horiz</i></a>
 
   <!-- Dropdown Structure -->
   <ul id='dropdown1' class='dropdown-content'>
+   <li><a style="color:Black; text-decoration:none;" href="{% url 'edit_comments' comments.id %}">Edit</a></li>
     <li><a  style="color:Black; text-decoration:none;" href="{% url 'delete_comments' comments.id %}">Delete</a></li>
     </ul>
     </span>
