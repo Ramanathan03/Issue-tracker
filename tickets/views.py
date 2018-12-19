@@ -15,6 +15,9 @@ from django.contrib.auth.models import User
 
 @login_required
 def add_tickets(request):   
+    """
+    These view function is for the issue add form 
+    """
     Priority = 'HIGH'
     if request.method == "POST":
         forms = ticketsForm(request.POST)
@@ -23,7 +26,10 @@ def add_tickets(request):
              request.session['priority'] = forms.cleaned_data['priority']
              request.session['title']       = forms.cleaned_data['title']
              request.session['description'] = forms.cleaned_data['description']   
-             request.session['type'] = forms.cleaned_data['type']
+             request.session['type'] = forms.cleaned_data['type']     
+             """
+             above code is for keep data store after checkou form if user cancel that checkout form the session will ended
+             """
              return redirect(checkout)
         if forms.is_valid():
             issue_data = forms.cleaned_data
@@ -42,6 +48,9 @@ def add_tickets(request):
     
 
 def show_tickets(request, pk):
+    """
+    These view is for show the details of issues and also it keeping comment form and comments detail as well  
+    """
     ticket = get_object_or_404(add_tickets_form , pk=pk)
     ticket.views += 1
     ticket.save()
@@ -112,6 +121,10 @@ def delete_comments(request, id):
 
 @login_required
 def confrim(request):
+    """
+    These issue confrim view the reason I added these because user paying for high priority issue so I make sure give them chance to check even though 
+    they have edit issue.
+    """
     title       = request.session['title']
     description = request.session['description']
     priority    = request.session['priority']
@@ -149,7 +162,10 @@ def upvote_tickets(request,id):
         ticket.like_and_dislike += 1
         ticket.save()
     return redirect(show_tickets, ticket.id)
-
+"""
+Upvote and down upvote can be improved maybe in future I will give user to like once and dislike once 
+it simple just have to add another model and with two foreign keys issue and user  
+"""
 @login_required
 def down_vote(request,id):
     ticket = get_object_or_404(add_tickets_form, pk=id)
