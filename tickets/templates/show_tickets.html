@@ -103,12 +103,12 @@
          <span class="user-author-font">{{comments.user}}</span> created this {{comments.comment_created}} {{comments.id}}
          {% if user == comments.user %}
         <span class="float-button">
-          <a class='dropdown-trigger ' href='#' data-target='dropdown1'><i class="material-icons">more_horiz</i></a>
+          <a class='dropdown-trigger ' href='#' data-target='dropdown2'><i class="material-icons">more_horiz</i></a>
 
   <!-- Dropdown Structure -->
-  <ul id='dropdown1' class='dropdown-content'>
-   <li><a style="color:Black; text-decoration:none;" href="{% url 'edit_comments' comments.id %}">Edit</a></li>
-    <li><a  style="color:Black; text-decoration:none;" href="{% url 'delete_comments' comments.id %}">Delete</a></li>
+  <ul id='dropdown2' class='dropdown-content'>
+   <li><a style="color:Black; text-decoration:none;" href="{% url 'edit_comments' comments.pk %}">Edit</a></li>
+    <li><a  style="color:Black; text-decoration:none;" href="{% url 'delete_comments' comments.pk %}">Delete</a></li>
     </ul>
     </span>
     {% endif %}

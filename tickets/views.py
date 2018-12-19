@@ -113,7 +113,7 @@ def delete_ticket(request,id):
 @login_required
 def delete_comments(request, id):
     comments = get_object_or_404(Comment_form, pk=id)
-    if request.method == "POST":
+    if request.method =="POST": 
        comments.delete()
        return redirect(index)
     return render(request,"confirm_delete.html",{'comments':comments})
