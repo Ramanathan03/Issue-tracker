@@ -69,13 +69,14 @@ This project was deployed on Heroku
 ###### Here is the way to I depolyed to heroku 
  - git remote add heroku 
  - create procfile 
- - used Gunicorn  WSGI web application in procfile
+ - web: gunicorn tracker.wsgi:application in procfile
+ - used Gunicorn  WSGI web application 
  - Push to Heroku --> $ git push heroku master
  
 * Procfile will help to declares types -> web
  [Website](https://ps-issue.herokuapp.com/)
 
-##### Config Vars --> IP = 0.0.0.0, PORT = 5000
+###### install gunicorn before going through these deployment 
 
 ## Credits
 

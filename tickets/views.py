@@ -163,6 +163,7 @@ def upvote_tickets(request,id):
     else:
         ticket.like_and_dislike += 1
         ticket.save()
+        
     return redirect(show_tickets, ticket.id)
 """
 Upvote and down upvote can be improved maybe in future I will give user to like once and dislike once 
