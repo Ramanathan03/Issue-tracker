@@ -59,22 +59,24 @@ def show_tickets(request, pk):
     #issue = add_tickets_form.objects.filter(id=ticket_id).first()
     if request.method == "POST":
        commentbox = CommentForm(request.POST)
-       if commentbox.is_valid(): 
+       if commentbox.is_valid():
             comment_data = commentbox.cleaned_data
             add_issue = Comment_form.objects.create(
                 comment = comment_data['comment'],
                 user = request.user,
                 ticket = get_object_or_404(add_tickets_form, pk=pk)
                 )
+            add_issue.save()
             return redirect(show_tickets,ticket.pk)
        print(commentbox)
     else:
         commentbox = CommentForm()
+        
+    comment = Comment_form.objects.all
     
-    #comment = Comment_form.objects.all()
     #like = like_posts.objects.all()
     
-    return render(request, 'show_tickets.html', {'ticket':ticket, 'commentbox':commentbox})
+    return render(request, 'show_tickets.html', {'ticket':ticket, 'commentbox':commentbox, 'comment':comment})
     
 @login_required
 def edit_tickets(request,id):
@@ -90,22 +92,22 @@ def edit_tickets(request,id):
  
 @login_required
 def edit_comments(request,id):
-    comment = get_object_or_404(Comment_form,pk=id)
+    comments = get_object_or_404(Comment_form,id=id)
     if request.method == "POST":
-        form = CommentForm(request.POST, instance=comment)
+        form = CommentForm(request.POST, instance=comments)
         if form.is_valid():
             form.save()
             return redirect(index)
     else:
-        form = CommentForm(instance=comment)
+        form = CommentForm(instance=comments)
     return render(request,"edit_comments.html",{'form':form})
 
 @login_required
 def delete_ticket(request,id):
     ticket = get_object_or_404(add_tickets_form,pk=id)
     if request.method == "POST":
-        ticket.delete()
-        return redirect(add_tickets)
+       ticket.delete()
+       return redirect(add_tickets)
     return render(request,"cofirm-ticket-delete.html",{'ticket':ticket})
         
 
